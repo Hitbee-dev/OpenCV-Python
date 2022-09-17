@@ -13,10 +13,10 @@ for i in range(1, 10):
 ## solution2 (function)
 def gogodan(num):
     for i in range(1, 10):
-        print(f"{num} x {i} = {num*i}")
+        return f"{num} x {i} = {num*i}"
 
-gogodan(2)
-gogodan(3)
+print(gogodan(2))
+print(gogodan(3))
 # ...
-gogodan(8)
-gogodan(9)
+print(gogodan(8))
+print(gogodan(9))
