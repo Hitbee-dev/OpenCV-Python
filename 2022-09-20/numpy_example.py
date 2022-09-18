@@ -44,3 +44,42 @@ arr = np.random.randint(0, 50, 500)
 more_data = Counter(arr).most_common()[0]
 print(f'가장 많이 나온 원소: {more_data[0]}')
 print(f'중복횟수: {more_data[1]}회')
+
+# solution4 (for + dict)
+np.random.seed(10)
+result = {}
+arr = np.random.randint(0, 50, 500)
+
+# 딕셔너리에 중복값을 담는 과정
+for a in arr:
+    if a not in result:
+        result[int(a)] = 1
+    else:
+        result[int(a)] += 1
+
+# 중복이 가장 많은 값만 변수에 저장
+max_key, max_value = 0, 0
+for k, v in result.items():
+    if v > max_value:
+        max_value = v
+        max_key = k    
+print(f'가장 많이 나온 원소: {max_key}')
+print(f'중복횟수: {max_value}회')
+
+# solution5 (for + dict + lambda)
+np.random.seed(10)
+result = {}
+arr = np.random.randint(0, 50, 500)
+
+# 딕셔너리에 중복값을 담는 과정
+for a in arr:
+    if a not in result:
+        result[a] = 1
+    else:
+        result[a] += 1
+
+# 중복이 많은 횟수대로 정렬
+result = sorted(result.items(), key=lambda x:x[1], reverse=True)
+
+print(f'가장 많이 나온 원소: {result[0][0]}')
+print(f'중복횟수: {result[0][1]}회')
