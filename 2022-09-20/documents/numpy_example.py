@@ -1,5 +1,5 @@
 import numpy as np
-'''
+
 # example1
 zeros = np.zeros((2, 5), np.int32)
 ones = np.ones((3, 1), np.uint8)
@@ -36,7 +36,8 @@ np_a = np.random.rand(1, 10)
 print(np_a)
 print(np_a.sum())
 print(np_a.mean())
-'''
+
+# solution3
 from collections import Counter
 np.random.seed(10)
 arr = np.random.randint(0, 50, 500)
