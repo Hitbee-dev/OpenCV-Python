@@ -37,6 +37,9 @@ print(np_a)
 print(np_a.sum())
 print(np_a.mean())
 '''
-
-a = np.random.randint(0, 50, 500)
-print(a)
+from collections import Counter
+np.random.seed(10)
+arr = np.random.randint(0, 50, 500)
+more_data = Counter(arr).most_common()[0]
+print(f'가장 많이 나온 원소: {more_data[0]}')
+print(f'중복횟수: {more_data[1]}회')
