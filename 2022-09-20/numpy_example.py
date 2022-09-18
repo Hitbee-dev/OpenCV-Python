@@ -21,6 +21,16 @@ b = b.reshape(2,-1)
 print(b)
 
 # solution1
+list1 = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+list2 = np.array([10, 20, 30, 40, 50, 60, 70, 80])
+
+list1 = list1.reshape(2, -1)
+list2 = list2.reshape(2, -1)
+
+print(list1 + list2)
+print(list1 * list2)
+
+# solution2
 np.random.seed(10)
 np_a = np.random.rand(10)
 sum_a = 0
@@ -30,14 +40,14 @@ print(np_a)
 print(sum_a)
 print(sum_a/10)
 
-# solution2
+# solution3
 np.random.seed(10)
 np_a = np.random.rand(1, 10)
 print(np_a)
 print(np_a.sum())
 print(np_a.mean())
 
-# solution3
+# solution4
 from collections import Counter
 np.random.seed(10)
 arr = np.random.randint(0, 50, 500)
@@ -45,7 +55,7 @@ more_data = Counter(arr).most_common()[0]
 print(f'가장 많이 나온 원소: {more_data[0]}')
 print(f'중복횟수: {more_data[1]}회')
 
-# solution4 (for + dict)
+# solution5 (for + dict)
 np.random.seed(10)
 result = {}
 arr = np.random.randint(0, 50, 500)
@@ -66,7 +76,7 @@ for k, v in result.items():
 print(f'가장 많이 나온 원소: {max_key}')
 print(f'중복횟수: {max_value}회')
 
-# solution5 (for + dict + lambda)
+# solution6 (for + dict + lambda)
 np.random.seed(10)
 result = {}
 arr = np.random.randint(0, 50, 500)
