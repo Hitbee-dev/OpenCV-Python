@@ -1,5 +1,5 @@
 import numpy as np
-
+'''
 # example1
 zeros = np.zeros((2, 5), np.int32)
 ones = np.ones((3, 1), np.uint8)
@@ -19,3 +19,24 @@ print(a)
 print(b)
 b = b.reshape(2,-1)
 print(b)
+
+# solution1
+np.random.seed(10)
+np_a = np.random.rand(10)
+sum_a = 0
+for a in np_a:
+    sum_a += a
+print(np_a)
+print(sum_a)
+print(sum_a/10)
+
+# solution2
+np.random.seed(10)
+np_a = np.random.rand(1, 10)
+print(np_a)
+print(np_a.sum())
+print(np_a.mean())
+'''
+
+a = np.random.randint(0, 50, 500)
+print(a)
