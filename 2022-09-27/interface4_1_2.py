@@ -3,7 +3,7 @@ import cv2
 
 image = np.zeros((200, 400), np.uint8)
 image[:] = 200
-print(image)
+print(image.shape)
 
 title1 = 'Changed'
 cv2.namedWindow(title1, cv2.WINDOW_NORMAL)
