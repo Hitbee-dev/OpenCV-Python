@@ -13,7 +13,7 @@ while True:
 
     fps_cnt += 1
     print(fps_cnt)
-
+    
     title = 'Camera'
     cv2.imshow(title, frame)
 
