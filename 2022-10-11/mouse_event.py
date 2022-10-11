@@ -1,6 +1,3 @@
-import numpy as np
-import cv2
-
 def onMouse(event, x, y, flags, param):
     global title, pt
     if event == cv2.EVENT_LBUTTONDOWN or event == cv2.EVENT_RBUTTONDOWN:
@@ -25,12 +22,3 @@ def onMouse(event, x, y, flags, param):
         radius = int(np.sqrt(dx*dx + dy*dy))
         cv2.circle(image, pt, radius, (0, 0, 192), 2)
         cv2.imshow(title, image)
-
-image = np.full((300, 300, 3), (255, 255, 255), np.uint8)
-pt = [-1, -1]
-title = 'Draw Event'
-
-cv2.imshow(title, image)
-cv2.setMouseCallback(title, onMouse)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
