@@ -20,6 +20,6 @@ plt.axis('off')
 plt.imshow(image, cmap='gray')
 
 plt.subplot(1, 2, 2)
-plt.imshow(roi_img, cmap='gray')
 plt.axis('off')
+plt.imshow(roi_img, cmap='gray')
 plt.show()
