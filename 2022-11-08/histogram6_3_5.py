@@ -42,26 +42,14 @@ dst = cv2.LUT(image, idx.astype(np.uint8))
 hist_dst = cv2.calcHist([dst], [0], None, bsize, ranges)   # 히스토그램 계산
 hist_dst_img = draw_histo(hist_dst) 
 
+titles = ["image", "hist_img", "dst", "hist_dst_img"]
+
 plt.figure(figsize=(10, 10))
 
-plt.subplot(2, 2, 1)
-plt.axis('off')
-plt.title('image')
-plt.imshow(image)
-
-plt.subplot(2, 2, 2)
-plt.axis('off')
-plt.title('hist_img')
-plt.imshow(hist_img, cmap='gray')
-
-plt.subplot(2, 2, 3)
-plt.axis('off')
-plt.title('dst')
-plt.imshow(dst)
-
-plt.subplot(2, 2, 4)
-plt.axis('off')
-plt.title('hist_dst_img')
-plt.imshow(hist_dst_img, cmap='gray')
+for idx, title in enumerate(titles):
+    plt.subplot(2, 2, idx+1)
+    plt.axis('off')
+    plt.title(title)
+    plt.imshow(eval(title), cmap='gray')
 
 plt.show()
