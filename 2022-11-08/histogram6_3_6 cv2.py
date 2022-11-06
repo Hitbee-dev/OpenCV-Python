@@ -27,6 +27,9 @@ bsize, ranges = [64], [0, 256]
 hist = cv2.calcHist([image], [0], None, bsize, ranges)   # 히스토그램 계산
 hist_img = draw_histo(hist)                               # 히스토그램 그리기
 
+cv2.imshow('image', image)
+cv2.imshow('hist_img', hist_img)
+
 ## 화소값 할당
 bin_width = ranges[1] / bsize[0]
 low = search_value_idx(hist, 0) * bin_width
@@ -41,19 +44,14 @@ dst = cv2.LUT(image, idx.astype(np.uint8))                 # 룩업 테이블
 hist_dst = cv2.calcHist([dst], [0], None, bsize, ranges)   # 히스토그램 계산
 hist_dst_img = draw_histo(hist_dst) 
 
+cv2.imshow('dst', dst)
+cv2.imshow('hist_dst_img', hist_dst_img)
+
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 dst2 = cv2.equalizeHist(image_gray)
 hist_dst2 = cv2.calcHist([dst2], [0], None, bsize, ranges)   # 히스토그램 계산
 hist_dst2_img = draw_histo(hist_dst2)
 
-titles = ["image", "hist_img", "dst", "hist_dst_img", "dst2", "hist_dst2_img"]
-
-plt.figure(figsize=(10, 12))
-
-for idx, title in enumerate(titles):
-    plt.subplot(3, 2, idx+1)
-    plt.axis('off')
-    plt.title(title)
-    plt.imshow(eval(title), cmap='gray')
-
-plt.show()
+cv2.imshow('dst2', dst2)
+cv2.imshow('hist_dst2_img', hist_dst2_img)
+cv2.waitKey(0)
