@@ -18,6 +18,8 @@ blur_mask = np.array(blur_mask, np.float32).reshape(3, 3)
 blur_img = cv2.filter2D(img, cv2.CV_16S, blur_mask)
 blur_img = cv2.convertScaleAbs(blur_img)
 
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
 # sharp convolution image
 sharp_mask = [0, -1, 0,
               -1, 5, -1,
@@ -108,7 +110,8 @@ laplacian_8p_img = cv2.filter2D(img, cv2.CV_16S, laplacian_8p_mask)
 laplacian_8p_img = cv2.convertScaleAbs(laplacian_8p_img)
 
 # laplacian merge edge image
-# laplacian_img = cv2.addWeighted(laplacian_4p_img, 0.5, laplacian_8p_img, 0.5, 0)
+laplacian_img = cv2.addWeighted(laplacian_4p_img, 0.5, laplacian_8p_img, 0.5, 0)
+
 laplacian_img = cv2.Laplacian(img, cv2.CV_16S, ksize=3)
 laplacian_img = cv2.convertScaleAbs(laplacian_img)
 
@@ -121,6 +124,8 @@ log_img = cv2.Laplacian(gaus_mask, cv2.CV_16S, 3).astype(np.uint8)
 # dog edge image
 gaus2_mask = cv2.GaussianBlur(img, (9, 9), 0, 0)
 dog_img = gaus_mask - gaus2_mask
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 '''
 plt.figure(figsize=(20, 8))
@@ -138,12 +143,12 @@ for idx, title in enumerate(titles):
     plt.title(title)
     plt.imshow(eval(title), cmap='gray')
 '''
-
+cv2.imshow("dog_img", dog_img)
 # '''
 plt.figure(figsize=(12, 12))
 
 pltx, plty = 2, 4
-titles = ['blur_img', 'sharp_img','roberts_img', 'prewitt_img', 'sobel_img', 'laplacian_img', 'log_img', 'dog_img']
+titles = ['blur_img', 'sharp_img', 'roberts_img', 'prewitt_img', 'sobel_img', 'laplacian_img', 'log_img', 'dog_img']
 for idx, title in enumerate(titles):
     plt.subplot(plty, pltx, idx+1)
     plt.axis('off')
