@@ -14,7 +14,7 @@ def onThreshold(value):
     th[1] = cv2.getTrackbarPos("Hue_th2", "result")
 
     _, result = cv2.threshold(hue_img, th[1], 255, cv2.THRESH_TOZERO_INV)
-    cv2.threshold(result, th[0], 255, cv2.THRESH_BINARY, result)
+    cv2.threshold(result, th[0], 255, cv2.THRESH_BINARY, result) # 마지막에 추가
     cv2.imshow("result", result)
 
 

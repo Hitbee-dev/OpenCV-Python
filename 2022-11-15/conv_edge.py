@@ -11,10 +11,10 @@ img =cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 cv2.imshow("original", img)
 
 # blur convolution image
-blur_mask = [1/9, 1/9, 1/9,
-             1/9, 1/9, 1/9,
-             1/9, 1/9, 1/9]
-blur_mask = np.array(blur_mask, np.float32).reshape(3, 3)
+blur_mask = np.array([[1/9, 1/9, 1/9],
+             [1/9, 1/9, 1/9],
+             [1/9, 1/9, 1/9]], dtype=float)
+# blur_mask = np.array(blur_mask, np.float32).reshape(3, 3)
 blur_img = cv2.filter2D(img, cv2.CV_16S, blur_mask)
 blur_img = cv2.convertScaleAbs(blur_img)
 
@@ -143,9 +143,10 @@ for idx, title in enumerate(titles):
     plt.title(title)
     plt.imshow(eval(title), cmap='gray')
 '''
-cv2.imshow("dog_img", dog_img)
+# cv2.imshow("dog_img", dog_img)
 # '''
-plt.figure(figsize=(12, 12))
+plt.rcParams['toolbar'] = 'None'
+plt.figure(figsize=(8, 12))
 
 pltx, plty = 2, 4
 titles = ['blur_img', 'sharp_img', 'roberts_img', 'prewitt_img', 'sobel_img', 'laplacian_img', 'log_img', 'dog_img']
@@ -153,7 +154,7 @@ for idx, title in enumerate(titles):
     plt.subplot(plty, pltx, idx+1)
     plt.axis('off')
     plt.title(title)
-    plt.imshow(eval(title), cmap='gray')
+    plt.imshow(eval(title), aspect='auto', cmap='gray')
 # '''
 plt.show()
 
