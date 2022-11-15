@@ -55,15 +55,6 @@ prewitt_h_img = cv2.convertScaleAbs(prewitt_h_img)
 
 prewitt_img = cv2.addWeighted(prewitt_v_img, 0.5, prewitt_h_img, 0.5, 0)
 
-
-
-
-
-
-
-
-
-
 plt.rcParams['toolbar'] = 'None'
 plt.figure(figsize=(8, 12))
 
