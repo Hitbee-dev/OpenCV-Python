@@ -33,25 +33,36 @@ image_move = cv2.warpAffine(image, mov_M, (w, h))
 
 '어파인 변환을 활용한 회전'
 # center = (w // 2, h // 2)
+# scale = 0.7
 # angle = 45
-# scale = 1
 # rot_M = cv2.getRotationMatrix2D(center, angle, scale)
-# dst2 = cv2.warpAffine(image, rot_M, (w, h))
-theta = np.radians(45)
-rot_M = np.array([[np.cos(theta), np.sin(theta), (1-np.cos(theta))*w//2 - np.sin(theta)*h//2],
-                  [-np.sin(theta), np.cos(theta), np.sin(theta)*w//2 + (1-np.cos(theta))*h//2]], dtype=np.float32)
+# image_rotate = cv2.warpAffine(image, rot_M, (w, h))
+center = (w // 2, h // 2)
+scale = 0.7
+angle = 45
+theta = np.radians(angle)
+alpha = scale * np.cos(theta)
+beta = scale * np.sin(theta)
+rot_M = np.array([[alpha, beta, (1-alpha)*center[0] - beta*center[1]],
+                  [-beta, alpha, beta*center[0] + (1-alpha)*center[1]]], dtype=np.float32)
 image_rotate = cv2.warpAffine(image, rot_M, (w, h))
 
 '어파인 변환을 이용한 크기 변환'
 # 회전을 하면서 scale값을 변경하여 크기를 한번에 바꿀 수도 있지만, 따로 변환도 가능하다.
 # 방법1
-# resize_M = cv2.getRotationMatrix2D(center, 0, 0.5)
-# dst3 = cv2.warpAffine(image, resize_M, (w, h))
-# 방법2
-s_x, s_y = 0.7, 0.7
-resize_M = np.array([[s_x, 0, 0],
-                     [0, s_y, 0]], dtype=np.float32)
+resize_M = cv2.getRotationMatrix2D(center, 0, 0.5)
 image_resize = cv2.warpAffine(image, resize_M, (w, h))
+
+# 방법2
+# s_x, s_y = 0.5, 0.5
+# resize_M = np.array([[s_x, 0, 0],
+#                      [0, s_y, 0]], dtype=np.float32)
+# image_resize = cv2.warpAffine(image, resize_M, (w, h))
+
+# 방법3
+# image_resize = np.zeros((h, w, c), dtype=np.uint8)
+# resize_M = cv2.resize(image, (0, 0), fx=0.5, fy=0.5, interpolation=cv2.INTER_LINEAR)
+# image_resize[:resize_M.shape[0], :resize_M.shape[1]] = resize_M
 
 'matplotlib을 이용해 한번에 출력'
 titles = ['image', 'image_move', 'image_rotate', 'image_resize']

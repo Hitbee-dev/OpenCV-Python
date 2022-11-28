@@ -3,9 +3,6 @@ import matplotlib.pyplot as plt
 
 image = cv2.imread("D:/github/OpenCV-Python/2022-11-29/images/sign_image.jpg", cv2.IMREAD_COLOR)
 
-mask = np.ones((20, 5), np.uint8)
-# 번호판의 가로 세로 비율이 약 17:5므로 17x5 크기의 마스크를 생성
-# numpy의 행렬은 반대로 적용되기 때문에 (5, 17)의 1로 채워진 마스크를 생성
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # 원본 이미지를 그레이 스케일로 변환
 blur = cv2.blur(gray, (5, 5))
@@ -34,6 +31,11 @@ ret, thresh = cv2.threshold(sobel, 200, 255, cv2.THRESH_BINARY)
 3. 255는 최대 값 (이미지는 0 ~ 255로 이루어져 있기 때문에 최대값을 255로 주면 된다.)
 4. cv2.THRESH_BINARY는 임계값을 넘으면 최대값으로, 넘지 못하면 0으로 처리
 '''
+
+mask = np.ones((20, 5), np.uint8)
+# 간판의 가로 세로 비율이 약 5:20이므로 5:20 크기의 마스크를 생성
+# numpy의 행렬은 반대로 적용되기 때문에 (20, 5)의 1로 채워진 마스크를 생성
+
 morph_close = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, mask, iterations=3)
 # 모폴로지 닫힘 연산
 '''
@@ -43,12 +45,13 @@ morph_close = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, mask, iterations=3)
 4. iterations는 반복 횟수 (너무 적어도, 너무 많아도 이상하게 나온다.)
 '''
 
-titles = ['image', 'gray', 'blur', 'sobel', 'thresh', 'morph_close']
+# titles = ['image', 'gray', 'blur', 'sobel', 'thresh', 'morph_close']
+titles = ['thresh', 'morph_close']
 
-plt.figure(figsize=(10, 12))
+plt.figure(figsize=(20, 5))
 
 for idx, title in enumerate(titles):
-    plt.subplot(3, 2, idx+1)
+    plt.subplot(1, 2, idx+1)
     plt.axis("off")
     plt.title(title)
     plt.imshow(eval(title), cmap="gray")
