@@ -5,7 +5,6 @@
 4. 드래그 했을 때 투영된 이미지 sub window에 실시간으로 출력
 '''
 
-
 import numpy as np, cv2
 
 # 생성된 네모 박스를 잡아 끌수 있도록 기능 모듈화
@@ -110,7 +109,12 @@ pts2 = np.float32([(0, 0), (400, 0), (400, 350), (0, 350)])
 draw_rect(np.copy(image))
 
 # 원본 이미지가 띄워져 있는 Windows에 마우스 콜백함수 적용
+cv2.setMouseCallback("select rect", onMouse, 0)
+''' param에 0을 주는 이유
+이런 이미지 실습의 경우 이미지를 param에 넣어 콜백함수에 같이 보내기도 하는데,
+이번 실습은 좌표 값으로 이미지를 투영하기 때문에 굳이 이미지를 보낼 필요는 없다.
 cv2.setMouseCallback("select rect", onMouse, image)
+'''
 
 # 키 입력 대기
 cv2.waitKey(0)
