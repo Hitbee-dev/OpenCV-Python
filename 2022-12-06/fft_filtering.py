@@ -54,6 +54,7 @@ def calc_spectrum(complex):
 
 # 고속 푸리에 변환
 def FFT(image):
+    # 푸리에 변환
     dft = cv2.dft(np.float32(image), flags=cv2.DFT_COMPLEX_OUTPUT)
     # 주파수 시프트
     dft = fftshift(dft)
@@ -65,6 +66,7 @@ def FFT(image):
 def IFFT(dft, shape):
     # 주파수 영역에서 원래 영상으로 변환
     dft = ifftshift(dft)
+    # 역 푸리에 변환 [:,:,0]은 실수부, [:,:,1]은 허수부
     img = cv2.idft(dft, flags=cv2.DFT_SCALE)[:,:,0]
     # 영삽입(zero-padding) 부분 제거
     img = img[:shape[0], :shape[1]]
