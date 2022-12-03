@@ -109,8 +109,8 @@ pts2 = np.float32([(0, 0), (400, 0), (400, 350), (0, 350)])
 # 원본 이미지를 띄우기 위함
 draw_rect(np.copy(image))
 
-# 원본 이미지가 띄워져 있는 이미지에 마우스 콜백함수 적용
-cv2.setMouseCallback("select rect", onMouse, 0)
+# 원본 이미지가 띄워져 있는 Windows에 마우스 콜백함수 적용
+cv2.setMouseCallback("select rect", onMouse, image)
 
 # 키 입력 대기
 cv2.waitKey(0)
