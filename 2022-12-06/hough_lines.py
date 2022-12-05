@@ -8,14 +8,20 @@ def draw_hough_lines(src, lines, nline):
     for i in range(min_length):
         # 수직거리, 각도
         rho, radian = lines[i, 0, 0:2]
+
+        # x, y축에 대한 삼각비
         a, b = math.cos(radian), math.sin(radian)
 
-        # 직선 위 2개 좌표 계산
+        # x, y축에 기준(절편) 좌표
         pt = (a * rho, b * rho)
 
         # 직선상의 이동 위치
         delta = (-1000 * b, 1000 * a)
+
+        # 직선의 방정식으로 그리기 위한 시작점 계산
         pt1 = np.add(pt, delta).astype('int')
+
+        # 직선의 방정식으로 그리기 위한 끝점 계산
         pt2 = np.subtract(pt, delta).astype('int')
         cv2.line(dst, tuple(pt1), tuple(pt2), (255, 0, 0), 2, cv2.LINE_AA)
     
@@ -35,7 +41,7 @@ rho, theta = 1, np.pi / 180
 
 # 허프 변환 직선 검출
 lines = cv2.HoughLines(canny, rho, theta, 20)
-
+print(lines)
 # 직선 그리기
 dst = draw_hough_lines(image, lines, 7)
 
